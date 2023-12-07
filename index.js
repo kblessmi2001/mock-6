@@ -14,7 +14,9 @@ app.use(cors({"origin":"*"}));
 app.use("/user",userRouter)
 app.use("/blog",blogRouter)
 
-
+app.get('/',(req,res)=>{
+    res.status(200).send({msg:"Base Point"})
+})
 app.listen(8080,async()=>{
     try {
         await connection;
