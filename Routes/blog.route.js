@@ -58,6 +58,36 @@ blogRouter.delete("/delete/:id", async (req, res) => {
     }
 });
 
+blogRouter.get('', async (req, res) => {
+  const { category, search, date } = req.query;
+ 
+  try {
+    let query = {};
+
+    if (category) {
+      query.category = category;
+    }
+    let sort = {};
+    if (date === 'asc') {
+      sort.date = 1;
+    }
+    else if(date === 'desc'){
+        sort.date = -1;
+    }
+
+    if (search) {
+       query.title = { $regex:search,$option: 'i' };
+    }
+
+    const blogs = await BlogsModel.find(query).sort(sort);
+    res.status(200).send(blogs);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+module.exports = blogRouter;
 
 module.exports = {blogRouter}
 
