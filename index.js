@@ -12,14 +12,14 @@ app.use(cors({"origin":"*"}));
 
 
 app.use("/user",userRouter)
-app.use("/blog",authmiddleware,blogRouter)
+app.use("/blog",blogRouter)
 
 
 app.listen(8080,async()=>{
     try {
         await connection;
         console.log("DB is connected")
-        console.log("Server is running at 3000")
+        console.log("Server is running at 8080")
     } catch (error) {
         console.log(error);
     }

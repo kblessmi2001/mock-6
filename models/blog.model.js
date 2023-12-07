@@ -7,7 +7,7 @@ const blogsSchema = mongoose.Schema({
     content:String,
     category:String,
     date:String,
-    like:Number,
+    likes:Number,
     comments:Array
 
 },

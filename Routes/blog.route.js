@@ -7,7 +7,7 @@ blogRouter.use(authmiddleware)
 
 blogRouter.get("/", async (req, res) => {
     try {
-        const blogs = await BlogsModel.find({ userId: req.body.userID })
+        const blogs = await BlogsModel.find()
         res.status(200).json(blogs)
     } catch (error) {
         res.status(400).json({ error })
